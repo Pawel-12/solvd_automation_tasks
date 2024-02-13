@@ -37,10 +37,11 @@ public class APIPhotoTest implements IAbstractTest {
     }
 
     @Test
-    public void createPhotoFail() {
+    public void createPhotoMissingField() {
         PostPhoto api = new PostPhoto();
 
         api.setProperties("photos/photo.properties");
+        api.getProperties().remove("albumId");
         api.getProperties().remove("title");
         api.callAPIExpectSuccess();
         api.validateResponse();

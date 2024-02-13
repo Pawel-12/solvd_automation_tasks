@@ -1,6 +1,6 @@
 {
-  "albumId": "${albumId}",
-  "title": "${title}",
-  "url": "${url}",
-  "thumbnailUrl": "${thumbnailUrl}"
+  <#if albumId??>"albumId": "${albumId}",</#if>
+  <#if title??>"title": "${title}",</#if>
+  <#if url??>"url": "${url}",</#if>
+  <#if thumbnailUrl??>"thumbnailUrl": "${thumbnailUrl}"</#if>
 }

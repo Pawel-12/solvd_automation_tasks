@@ -1,7 +1,7 @@
 {
-  "albumId": "type:String",
+  <#if albumId??>"albumId": "type:String",</#if>
   "id": "type:Integer",
-  "title": "type:String",
-  "url": "type:String",
-  "thumbnailUrl": "type:String"
+  <#if title??>"title": "type:String",</#if>
+  <#if url??>"url": "type:String",</#if>
+  <#if thumbnailUrl??>"thumbnailUrl": "type:String"</#if>
 }

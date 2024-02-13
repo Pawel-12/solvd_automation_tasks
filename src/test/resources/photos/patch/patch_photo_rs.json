@@ -1,0 +1,7 @@
+{
+  "albumId": "type:Integer",
+  "id": "type:Integer",
+  "title": "type:String",
+  "url": "type:String",
+  "thumbnailUrl": "type:String"
+}

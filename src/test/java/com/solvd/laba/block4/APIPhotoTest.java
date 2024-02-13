@@ -37,6 +37,16 @@ public class APIPhotoTest implements IAbstractTest {
     }
 
     @Test
+    public void createPhotoFail() {
+        PostPhoto api = new PostPhoto();
+
+        api.setProperties("photos/photo.properties");
+        api.getProperties().remove("title");
+        api.callAPIExpectSuccess();
+        api.validateResponse();
+    }
+
+    @Test
     public void patchPhoto() {
         PostPhoto api = new PostPhoto();
 

@@ -10,8 +10,8 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 
 @Endpoint(url = "${config.api.url}/photos/${photo.id}", methodType = HttpMethodType.PATCH)
-@RequestTemplatePath(path = "photos/post/post_photo_rq.json")
-@ResponseTemplatePath(path = "photos/post/post_photo_rs.json")
+@RequestTemplatePath(path = "photos/patch/patch_photo_rq.json")
+@ResponseTemplatePath(path = "photos/patch/patch_photo_rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PatchPhoto extends AbstractApiMethodV2 {
     public PatchPhoto(Integer id) {

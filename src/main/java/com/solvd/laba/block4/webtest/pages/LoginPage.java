@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
-    @FindBy(css = "html body div.login-box ")
+    @FindBy(css = "div.login-box")
     private LoginBox loginBox;
 
     public LoginPage(WebDriver driver) {
@@ -16,14 +16,6 @@ public class LoginPage extends AbstractPage {
     }
 
     public InventoryPage tryLogin(String username, String password) {
-        loginBox.getUsernameField().assertElementPresent();
-        loginBox.getPasswordField().assertElementPresent();
-        loginBox.getLoginButton().assertElementPresent();
-
-        loginBox.getUsernameField().type(username);
-        loginBox.getPasswordField().type(password);
-        loginBox.getLoginButton().click();
-
-        return new InventoryPage(getDriver());
+        return loginBox.tryLogin(username, password);
     }
 }

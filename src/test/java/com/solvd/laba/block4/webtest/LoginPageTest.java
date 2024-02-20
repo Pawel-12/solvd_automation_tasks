@@ -3,27 +3,28 @@ package com.solvd.laba.block4.webtest;
 import com.solvd.laba.block4.webtest.pages.InventoryPage;
 import com.solvd.laba.block4.webtest.pages.LoginPage;
 import com.zebrunner.carina.core.AbstractTest;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginPageTest extends AbstractTest {
-    @Test(dataProvider = "DP1")
+    @Test(dataProvider = "CorrectLoginData")
     public void loginTest(String username, String password) {
-        LoginPage page = new LoginPage(getDriver());
-        page.open();
-        page.assertPageOpened();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.open();
+        loginPage.assertPageOpened();
 
-        page.tryLogin(username, password).assertPageOpened();
+        loginPage.tryLogin(username, password).assertPageOpened();
     }
 
-    @Test(dataProvider = "DP2")
+    @Test(dataProvider = "WrongLoginData")
     public void loginTestFail(String username, String password) {
-        LoginPage page = new LoginPage(getDriver());
-        page.open();
-        page.assertPageOpened();
+        LoginPage loginPage = new LoginPage(getDriver());
+        loginPage.open();
+        loginPage.assertPageOpened();
 
-        page.tryLogin(username, password);
-        page.assertPageOpened();
+        loginPage.tryLogin(username, password);
+        loginPage.assertPageOpened();
     }
 
     @Test()
@@ -32,11 +33,12 @@ public class LoginPageTest extends AbstractTest {
         InventoryPage inventoryPage = new InventoryPage(getDriver());
 
         inventoryPage.open();
-        loginPage.assertPageOpened();
+        Assert.assertFalse(inventoryPage.isPageOpened(0));
+        loginPage.assertPageOpened(0);
     }
 
-    @DataProvider(parallel = true, name = "DP1")
-    public static Object[][] dataprovider() {
+    @DataProvider(parallel = true, name = "CorrectLoginData")
+    public static Object[][] correctLoginData() {
         return new Object[][]{
                 {"standard_user", "secret_sauce"},
                 {"problem_user", "secret_sauce"},
@@ -45,8 +47,8 @@ public class LoginPageTest extends AbstractTest {
                 {"visual_user", "secret_sauce"}};
     }
 
-    @DataProvider(parallel = true, name = "DP2")
-    public static Object[][] dataprovider2() {
+    @DataProvider(parallel = true, name = "WrongLoginData")
+    public static Object[][] wrongLoginData() {
         return new Object[][]{
                 {"locked_out_user", "secret_sauce"},
                 {"problem_user", ""},
